@@ -38,6 +38,6 @@ public class EndToEndTest extends BaseTest {
                 .clickOnLoginButton()
                 .loginErrorMessageIsDisplayed();
 
-        assertFalse(actualResult);
+        assertFalse("Can't Login to the system",actualResult);
     }
 }
