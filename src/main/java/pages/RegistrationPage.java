@@ -1,6 +1,7 @@
 package pages;
 
 import locators.RegistrationPageLocators;
+import settings.Settings;
 
 import static utils.SharedSteps.*;
 
@@ -48,7 +49,9 @@ public class RegistrationPage {
         clickOnElement(RegistrationPageLocators.LINKEDIN_RADIO_BUTTON_LOCATOR.by());
         return this;
     }
+
     public void clickOnRegisterButton() {
         clickOnElement(RegistrationPageLocators.REGISTER_BUTTON_LOCATOR.by());
+        navigateToPage(Settings.loginUrl);
     }
 }

@@ -10,15 +10,12 @@ import settings.Settings;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import static utils.DriverFactory.*;
 
 public final class SharedSteps {
     private static final WebDriver driver = getDriver(Settings.browserName);
     private static final WebDriverWait wait = getDriverWait();
-
-    private static final Actions action = getDriverAction();
 
     public static void clickOnElement(By elementPath) {
         wait.until(ExpectedConditions.elementToBeClickable(elementPath)).click();
@@ -27,13 +24,6 @@ public final class SharedSteps {
     public static void clickOnElement(WebElement elementPath) {
         wait.until(ExpectedConditions.elementToBeClickable(elementPath)).click();
     }
-
-    public static void clickOnElementByJavaScript(By elementPath) {
-        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(elementPath));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", element);
-    }
-
 
     public static void sendTextToElement(String text, By elementPath) {
         WebElement element = driver.findElement(elementPath);
@@ -48,16 +38,8 @@ public final class SharedSteps {
         driver.navigate().to(url);
     }
 
-    public static List<WebElement> findElements(By elementsPath) {
-        return wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElements(elementsPath)));
-    }
-
-    public static WebElement findElement(By elementsPath) {
-        return wait.until(ExpectedConditions.visibilityOf(driver.findElement(elementsPath)));
-    }
-
-    public static void moveToElement(WebElement element) {
-        action.moveToElement(element).build().perform();
+    public static boolean isDisplayed(By elementPath) {
+        return driver.findElement(elementPath).isDisplayed();
     }
 
     public static void takeScreenShot(String filePath) {
@@ -67,10 +49,6 @@ public final class SharedSteps {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void refreshPage() {
-        driver.navigate().refresh();
     }
 
     private static Select findDropDownElement(By dropDownPath) {

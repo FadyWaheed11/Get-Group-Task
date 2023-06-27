@@ -38,6 +38,10 @@ public class RegisterData {
         return (String) jsonData.get("email");
     }
 
+    public String getPassword() {
+        return (String) jsonData.get("password");
+    }
+
     public String getPhoneNumber() {
         return (String) jsonData.get("phoneNumber");
     }
@@ -47,6 +51,7 @@ public class RegisterData {
         int randomCompanyNumber = Helper.getRandomNumber(courses.size());
         return (String) courses.get(randomCompanyNumber);
     }
+
     public String getMonth() {
         JSONArray months = (JSONArray) jsonData.get("months");
         int randomCompanyNumber = Helper.getRandomNumber(months.size());
